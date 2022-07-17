@@ -59,6 +59,46 @@ In this project, and due to the limited computation power at hand, we worked wit
 To get the raw tweet text from the tweet IDs, we selected a random sample of 100,000 tweets from 16 months starting from February 2020 till June 2021, and [hydrated](https://stackoverflow.com/questions/34191022/what-does-hydrate-mean-on-twitter) them using [Hydrator app](https://github.com/DocNow/hydrator). The dataset obtained from Hydrator contained 35 features, but we worked on only two: “full text”, which is the full, raw text of the tweet; and “Datetime”, which is the date and time when the tweet was posted.
 
 
-## Results
+### Results
+
+We applied the model to the series of COVID-19 tweets and plotted the average daily sentiment scores against time: 
+
+![MeanperdayCOVID](https://user-images.githubusercontent.com/42250266/179397899-796c9718-a65c-4a13-a7fb-e97e7bbd6050.png)
+
+But the daily averages were highly noisy, so we used a smoothing filter to see the overall trend:
+
+![MeanperdaySAVGOLCOVID](https://user-images.githubusercontent.com/42250266/179397929-5ee411a4-0556-47d7-b3fc-c024d3abe358.png)
 
 
+If we add some key events to the plot to see how they line up with the trends, we will see that the average sentiment scores were negative at the start of the pandemic. The feelings of fear might explain the initial trend. 
+Another slight drop in sentiments was observed during the summer of 2020 when the second pandemic wave started. But as the vaccination campaigns started, there was a slight increase in sentiment scores:
+
+![image](https://user-images.githubusercontent.com/42250266/179398060-5a9160ec-eaee-487f-bed6-6dc7f440eafe.png)
+
+
+We wanted to investigate the effects of the vaccination campaigns in more detail, so we used a [dataset available on Kaggle](https://www.kaggle.com/datasets/gpreda/all-covid19-vaccines-tweets) that contained tweets about the different vaccines we also extracted tweets from the COVID-19 dataset.
+We then applied the sentiment analysis model and plotted the trend along with the COVID-19 sentiment arc:
+
+ - *Plot of vaccination tweets extracted from the COVID-19 dataset*:
+	 ![inhouse](https://user-images.githubusercontent.com/42250266/179398335-b18ba281-6958-48c1-8e1b-3b87b053340f.png)
+
+ - *Plot of vaccination tweets from the Kaggle dataset*:
+    ![external](https://user-images.githubusercontent.com/42250266/179398340-75c42ec5-9801-46fa-b73b-142a2435c73c.png)
+
+ - *Plot of both datasets appended*:
+    ![all](https://user-images.githubusercontent.com/42250266/179398350-cfd75717-d25f-49c6-98df-4d0002dc7656.png)
+
+Therefore, we could infer that the sentiment arc for COVID-19 was influenced by the introduction of vaccines, or other factors that have not been investigated yet.
+
+**Contextual Meaning of Words**
+
+Another point we were curious about was how context could change a word's polarity and how it would affect the arc. The word "positive" usually means something pleasant when describing a situation or experience and should imply a positive sentiment. In the context of COVID-19, a positive test result means that someone has been infected, which might indicate a negative sentiment.
+
+<img src= "https://user-images.githubusercontent.com/42250266/179398475-0d1e9efe-22c1-41b9-b5d3-ee3929e280da.jpg" width="550">
+
+A phrase like "I have been tested positive" should be classified as negative. But, since our model was pre-trained and fine-tuned on a general domain corpus, it classifies it as positive.
+
+We tested an approach where we replaced the word "positive" with "infected" in all tweets in the corpus that did not contain the words "impact" or "effect". Similarly, we replaced "negative" with "free".
+
+We plot the sentiment arc resulting from this approach in comparison to the original COVID-19 arc. The modified arc is slightly more negative however the difference is almost unnoticeable showing that the change in word meanings doesn’t affect the model drastically:
+![MeanperdaySAVGOLCOMPARISONCOVID](https://user-images.githubusercontent.com/42250266/179398591-2a0194b3-91b7-49ee-af14-5d5bc79604b6.png)
