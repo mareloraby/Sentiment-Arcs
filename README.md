@@ -66,12 +66,14 @@ To get the raw tweet text from the tweet IDs, we selected a random sample of 100
 ### Results
 
 We applied the model to the series of COVID-19 tweets and plotted the average daily sentiment scores against time: 
-
 ![MeanperdayCOVID](https://user-images.githubusercontent.com/42250266/179397899-796c9718-a65c-4a13-a7fb-e97e7bbd6050.png)
 
 But the daily averages were highly noisy, so we used a smoothing filter to see the overall trend:
-
 ![MeanperdaySAVGOLCOVID](https://user-images.githubusercontent.com/42250266/179397929-5ee411a4-0556-47d7-b3fc-c024d3abe358.png)
+
+In comparison to [daily death rates as reported by WHO](https://covid19.who.int/data):
+![deathratesCOVID](https://user-images.githubusercontent.com/42250266/179399007-302f15ec-95d0-470e-8b47-b92d01436714.png)
+
 
 
 If we add some key events to the plot to see how they line up with the trends, we will see that the average sentiment scores were negative at the start of the pandemic. The feelings of fear might explain the initial trend. 
@@ -79,6 +81,8 @@ Another slight drop in sentiments was observed during the summer of 2020 when th
 
 ![image](https://user-images.githubusercontent.com/42250266/179398060-5a9160ec-eaee-487f-bed6-6dc7f440eafe.png)
 
+
+**Vaccinations**
 
 We wanted to investigate the effects of the vaccination campaigns in more detail, so we used a [dataset available on Kaggle](https://www.kaggle.com/datasets/gpreda/all-covid19-vaccines-tweets) that contained tweets about the different vaccines we also extracted tweets from the COVID-19 dataset.
 We then applied the sentiment analysis model and plotted the trend along with the COVID-19 sentiment arc:
@@ -106,3 +110,48 @@ We tested an approach where we replaced the word "positive" with "infected" in a
 
 We plot the sentiment arc resulting from this approach in comparison to the original COVID-19 arc. The modified arc is slightly more negative however the difference is almost unnoticeable showing that the change in word meanings doesn’t affect the model drastically:
 ![MeanperdaySAVGOLCOMPARISONCOVID](https://user-images.githubusercontent.com/42250266/179398591-2a0194b3-91b7-49ee-af14-5d5bc79604b6.png)
+
+**Happiness Scores**
+
+We carried out further analysis using the [Hedonometer](http://hedonometer.org/). While it is a fact that the models measure different qualities of the text in different ways and on different scales, we were curious to see if the two arcs - one based on happiness scores and one based on sentiment scores - would exhibit roughly the same pattern.
+
+We plot both arcs on the same plot, each with different scoring scales: the Hedonometer scale is 1 (very negative) to 9 (very positive), with 5 being neutral; our
+scale is -1 (very negative), +1 (very positive) and 0 neutral. Both arcs convey
+the overall daily average scores:
+
+![hedon2](https://user-images.githubusercontent.com/42250266/179398930-8fa76e70-4214-4d1b-9b2a-d8a7c153d0ca.png)
+
+This is an isolated arc of the Hedonometer to see the fluctuations in more detail:
+![hedon1](https://user-images.githubusercontent.com/42250266/179398945-0b7d0107-de4b-43ce-b12b-10bcb9cb32ff.png)
+
+
+## Topic Modelling
+
+We explored topics discussed in tweets using GSDMM. We experimented with setting the
+upper bound of the GSDMM with a different number of topics. However, we finally chose
+a model with 9 topics among all models because it showed diverse and less redundant
+topics when manually examined. The alpha and beta parameters are set to 0.1 as used in
+the original paper, and the number of iterations is set to 30.
+
+We applied the GSDMM algorithm on tweets posted during 3 key stages of the pandemic:
+
+ 1. The start of the outbreak (February - April 2020)
+ 2. The second wave (July - September 2020)
+ 3. The start of the vaccination campaign (December 2020 - February
+    2021)
+
+
+We obtained 9 different clusters of the words with the high probability of belonging to each cluster. We used our own judgement to label each cluster by 
+manually inspecting samples of tweets. Finally, after assigning a label to each topic, we identified 7 themes of the discussed topics:
+
+![image](https://user-images.githubusercontent.com/42250266/179399289-902d13c3-d6ec-4725-a64f-9d5c9dd4accc.png)
+The discussions of each theme varied in frequency and in focus throughout the pandemic.
+
+**Wordcloud per each stage: **
+
+ 1. ![wwc2342020](https://user-images.githubusercontent.com/42250266/179399374-3536ea2d-3597-4b98-9209-afe07163b6a1.png)
+ 2. ![wwc789](https://user-images.githubusercontent.com/42250266/179399377-c01a9507-2154-4041-b15d-580fe42edf88.png)
+ 3. ![wwc120102](https://user-images.githubusercontent.com/42250266/179399380-564357f8-d9e7-4ed2-8d13-5f000908a885.png)
+
+
+
