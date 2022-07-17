@@ -110,6 +110,12 @@ A phrase like "I have been tested positive" should be classified as negative. Bu
 
 We tested an approach where we replaced the word "positive" with "infected" in all tweets in the corpus that did not contain the words "impact" or "effect". Similarly, we replaced "negative" with "free".
 
+```
+if (not 'impact' in text.lower()) or (not 'effect' in text.lower()):
+  text = re.sub('negative|Negative',' free ', text)
+  text = re.sub('positive|Positive',' infected ',text)
+```
+
 We plot the sentiment arc resulting from this approach in comparison to the original COVID-19 arc. The modified arc is slightly more negative however the difference is almost unnoticeable showing that the change in word meanings doesn’t affect the model drastically:
 ![MeanperdaySAVGOLCOMPARISONCOVID](https://user-images.githubusercontent.com/42250266/179398591-2a0194b3-91b7-49ee-af14-5d5bc79604b6.png)
 
@@ -129,8 +135,8 @@ This is an isolated arc of the Hedonometer to see the fluctuations in more detai
 
 ## Topic Modelling
 
-We explored topics discussed in tweets using GSDMM. We experimented with setting the
-upper bound of the GSDMM with a different number of topics. However, we finally chose
+We explored topics discussed in tweets using [GSDMM](https://github.com/rwalk/gsdmm). We experimented with setting the
+upper bound of the GSDMM with different numbers of topics. However, we finally chose
 a model with 9 topics among all models because it showed diverse and less redundant
 topics when manually examined. The alpha and beta parameters are set to 0.1 as used in
 the original paper, and the number of iterations is set to 30.
@@ -141,7 +147,6 @@ We applied the GSDMM algorithm on tweets posted during 3 key stages of the pande
  2. The second wave (July - September 2020)
  3. The start of the vaccination campaign (December 2020 - February
     2021)
-
 
 We obtained 9 different clusters of the words with the high probability of belonging to each cluster. We used our own judgement to label each cluster by 
 manually inspecting samples of tweets. Finally, after assigning a label to each topic, we identified 7 themes of the discussed topics:
@@ -162,9 +167,30 @@ So we collected tweets over almost 16 days - around the time Elon Musk announced
 
 <img src= "https://user-images.githubusercontent.com/42250266/179399626-cae35d65-5333-4305-aa1b-e389a1174fa8.png" width="550">
 
-
-
 ![elonsent](https://user-images.githubusercontent.com/42250266/179399592-dafbb16a-dd6c-4b7a-81f6-49018503f416.png)
 
 
-
+# Libraries Used:
+ - numpy
+ - pandas
+ - vaex
+ - sklearn
+ - matplotlib
+ - seaborn
+ - codecs
+ - re
+ - os
+ - transformers
+ - torch
+ - random
+ - datetime
+ - tqdm
+ - tensorflow
+ - langdetect
+ - statsmodels
+ - scipy
+ - labMTsimple
+ - marisa_trie
+ 
+ 
+ 
