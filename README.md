@@ -188,9 +188,13 @@ So we collected tweets over almost 16 days - around the time Elon Musk announced
  - datetime
  - tqdm
  - tensorflow
+ - nltk
  - langdetect
  - statsmodels
  - scipy
+ - wordcloud
+ - gsdmm
+ - gensim
  - labMTsimple
  - marisa_trie
  
