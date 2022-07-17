@@ -147,11 +147,22 @@ manually inspecting samples of tweets. Finally, after assigning a label to each 
 ![image](https://user-images.githubusercontent.com/42250266/179399289-902d13c3-d6ec-4725-a64f-9d5c9dd4accc.png)
 The discussions of each theme varied in frequency and in focus throughout the pandemic.
 
-**Wordcloud per each stage: **
+**Wordcloud per each stage:**
 
  1. ![wwc2342020](https://user-images.githubusercontent.com/42250266/179399374-3536ea2d-3597-4b98-9209-afe07163b6a1.png)
  2. ![wwc789](https://user-images.githubusercontent.com/42250266/179399377-c01a9507-2154-4041-b15d-580fe42edf88.png)
  3. ![wwc120102](https://user-images.githubusercontent.com/42250266/179399380-564357f8-d9e7-4ed2-8d13-5f000908a885.png)
+
+
+## Application of the model on another domain: Elon Musk's Twitter Acquision
+To prove that the proposed model is generic, we applied it to tweets from another domain.
+So we collected tweets over almost 16 days - around the time Elon Musk announced he's offering to buy twitter - and used the sentiment analysis model to plot a sentiment arc:
+
+<img src= "https://user-images.githubusercontent.com/42250266/179399626-cae35d65-5333-4305-aa1b-e389a1174fa8.png" width="550">
+
+
+
+![elonsent](https://user-images.githubusercontent.com/42250266/179399592-dafbb16a-dd6c-4b7a-81f6-49018503f416.png)
 
 
 
