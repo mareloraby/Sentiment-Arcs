@@ -1,7 +1,11 @@
 
-
 <img src="https://user-images.githubusercontent.com/42250266/179395826-8aa09a83-2da6-47c5-8ad5-18ae38416245.png" width="100%" height="100%">
 
+
+<!---
+![image](https://user-images.githubusercontent.com/42250266/179398735-9153be4e-ec85-42c0-9583-c7002e0dc545.png)
+
+-->
 # Mapping and Tracking Sentiment Arcs on Social Media Streams
 
 This project aims to track people's opinions towards a major event, and plot a **sentiment arc**. This could be achieved through **sentiment analysis** which is the process of identifying opinions expressed in a text to determine whether a writer's attitude towards a particular topic is positive, negative, or neutral, and then using time series analysis to plot the sentiments against time and identify patterns and trends.
